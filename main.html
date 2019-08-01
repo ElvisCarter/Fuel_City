@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+<title>Fuel Rate Web Application</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+<header>
+		<h1> Welcome to Fuel City</h1>
+			<nav>
+				<ul class="nav">
+					<li><a href="index.html"> Login </a></li>
+					<li><a href="profile.html"> Client Profile Management </a></li>
+					<li><a href="history.html"> Fuel History </a></li>
+					<li><a href="quoteform.html"> Pricing Quote </a></li>
+				</ul>
+			
+			</nav>
+	</header>
+
+	<div class="login-page">
+	<div class="form">
+		<form class="register-form" action="connect.php" method="POST">
+		<p><strong>Create Username</strong></p>
+		<input type="text" name="" placeholder="Enter Username"/>
+		<p><strong>Create Password</strong></p>
+		<input type="text" name="" placeholder="Enter Password"/>
+		<button>Register</button>
+		<p class="message">Already have an account? <a href="#">Login</a></p>
+		</form>
+
+		<img src="avatar.png" class="avatar">
+		<form class="login-form" action="index.php" method="POST">
+		<p><strong>Username</strong></p>
+		<input type="text" name="username" placeholder="Enter Username">
+		<p><strong>Password</strong></p>
+		<input type="Password" name="password" placeholder="Enter Password">
+		<button>Login</button>
+		<p class="message">Don't have an account? <a href="#">Register</a></p>
+		</form>
+	</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+	<script>
+	$('.message a').click(function(){
+	$('form').animate({height: "toggle", opacity: "toggle"}, "slow");});
+	</script>
+
+</body>
+</html>

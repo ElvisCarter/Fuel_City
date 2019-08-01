@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<?php
+require('db.php');
+session_start();
+// If form submitted, insert values into the database.
+if (isset($_POST['username'])){
+        // removes backslashes
+ $username = stripslashes($_REQUEST['username']);
+        //escapes special characters in a string
+ $username = mysqli_real_escape_string($con,$username);
+ $password = stripslashes($_REQUEST['password']);
+ $password = mysqli_real_escape_string($con,$password);
+ //Checking is user existing in the database or not
+        $query = "SELECT * FROM `users` WHERE username='$username'
+and password='".md5($password)."'";
+ $result = mysqli_query($con,$query) or die(mysql_error());
+ $rows = mysqli_num_rows($result);
+        if($rows==1){
+     $_SESSION['username'] = $username;
+            // Redirect user to index.php
+     header("Location: index.php");
+         }else{
+ echo "<div class='form'>
+<h3>Username/password is incorrect.</h3>
+<br/>Click here to <a href='login.php'>Login</a></div>";
+ }
+    }
+	?>
+
+<html>
+
+<head>
+<title>Fuel Rate Web Application</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+<header>
+		<h1> Welcome to Fuel City</h1>
+			<nav>
+				<ul class="nav">
+					<li><a href="index.html"> Login </a></li>
+					<li><a href="profile.html"> Client Profile Management </a></li>
+					<li><a href="history.html"> Fuel History </a></li>
+					<li><a href="quoteform.html"> Pricing Quote </a></li>
+				</ul>
+			
+			</nav>
+	</header>
+
+	<div class="login-page">
+	<div class="form">
+		<form class="register-form" action="connect.php" method="POST">
+		<p><strong>Create Username</strong></p>
+		<input type="text" name="" placeholder="Enter Username"/>
+		<p><strong>Create Password</strong></p>
+		<input type="text" name="" placeholder="Enter Password"/>
+		<button>Register</button>
+		<p class="message">Already have an account? <a href="#">Login</a></p>
+		</form>
+
+		<img src="avatar.png" class="avatar">
+		<form class="login-form" action="index.php" method="POST">
+		<p><strong>Username</strong></p>
+		<input type="text" name="username" placeholder="Enter Username">
+		<p><strong>Password</strong></p>
+		<input type="Password" name="password" placeholder="Enter Password">
+		<button>Login</button>
+		<p class="message">Don't have an account? <a href="#">Register</a></p>
+		</form>
+	</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+	<script>
+	$('.message a').click(function(){
+	$('form').animate({height: "toggle", opacity: "toggle"}, "slow");});
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<?php
+include 'auth.php';
+
+
+?>
+
+<html>
+
+<head>
+<title>Fuel Quote</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+<header>
+		<h1> Calculate Fuel</h1>
+			<nav>
+				<ul class="nav">
+					<li><a href="profile.php"> Client Profile Management </a></li>
+					<li><a href="history.php"> Fuel History </a></li>
+					<li><a href="quoteform.php"> Pricing Quote </a></li>
+					<li><a href="logout.php"> Logout </a></li>
+				</ul>
+			
+			</nav>
+	</header>
+
+
+	<div class="quote" style="align-content: center">
+	<h2 align="center">Fuel Quote Form</h2>
+		<form class="quote-form" action="connect.php" method="POST">
+		<label>
+	  Gallons Requested:
+	  <input type="number" id="quantity" required>
+	  </label>
+	  <label>
+	  Delivery Address: <input type="text" name="delivery address" value="Client Address" required>
+	  </label>
+	  <label>
+	  Delivery Date:
+		<input type="date" name="deliverydate">
+	  </label>
+	  <label>
+	  Suggested Price (USD):
+	  <input type="number" id="price" value="2.50" required>
+	  </label>
+	  <label>
+	  <input type="button" onClick="multiplyBy()" Value="Calculate" />
+	  </label>
+	  <label>
+	  Total Amount Due (USD):<br>
+	  <span id = "total"></span>
+	  </label>
+		</form>
+	</div>
+
+	<script>
+	function multiplyBy(){
+        num1 = document.getElementById("quantity").value;
+        num2 = document.getElementById("price").value;
+        document.getElementById("total").innerHTML = num1 * num2;
+        document.getElementById("total").innerHTML = Number(document.getElementById("total").innerHTML).toFixed(2);
+	}
+	</script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,20 @@
+<?php
+require 'connect.php';
+
+
+$query= mysql_query("SELECT 'username' FROM 'mysql_db'.'fuel_login' ");
+While (($row=mysql_fetch_assoc($query)) !== false){
+echo $row['username'];
+
+}
+
+$query= mysql_query("SELECT 'password' FROM 'mysql_db'.'fuel_login' ");
+While (($row=mysql_fetch_assoc($query)) !== false){
+echo $row['password'];
+
+
+}
+
+header('Location: C:\Users\segbe\Documents\SOFTWARE DESIGN\Fuel Web App Software Design Project\Front End\quoteform.html');
+?>
+
